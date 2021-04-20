@@ -18,7 +18,7 @@ W kolejnym kroku można wpisać w terminalu komendę:
 jeśli chcemy zapełnić bazę danych przypadkowymi danymi.
 A na koniec, aby uruchomić server, należy wpisać:
 <pre><code>php artisan serve</code></pre>
-Dla akcji create, została zbudowana dokumentacja w ramach swagger ui, można ją znaleść pod adresem:
+Dla akcji create, została zbudowana dokumentacja w ramach swagger ui, można ją znaleźć pod adresem:
 <pre><code>localhost:8000/api</code></pre>
 a prezentuje się w ten sposób:<br> 
 <p></p>
