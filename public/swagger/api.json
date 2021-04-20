@@ -1,0 +1,249 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API docs",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api",
+      "description": "Local Server"
+    }
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": ["User"],
+        "summary": "CreateUser",
+        "operationId": "CreateUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createRequest"
+              },
+              "example": {
+
+                  "first_name": "Jan",
+                  "last_name": "Kowalski",
+                  "email": "test240@example.org",
+                  "created_at": "2021-04-15T11:24:19Z",
+                  "updated_at": "2021-04-15T11:24:19Z",
+                  "professor": {
+                    "id": 10,
+                    "user_id": 18,
+                    "phone": "123 456 789",
+                    "level_of_education": "Szkoła średnia",
+                    "created_at": "2021-04-15T11:24:19Z",
+                    "updated_at": "2021-04-15T11:24:19Z"
+                  
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+    "createRequest": {
+      "title": "createRequest",
+      "example": {
+        "first_name": "Jan",
+        "last_name": "Kowalski",
+        "email": "test240@example.org",
+        "password": "test 1234",
+        "professor": {
+          "phone": "123 456 789",
+          "level_of_education": "Szkoła średnia"
+        },
+        "administration_employee": {
+          "correspondence_address": {
+            "voivodeship": "Wielkopolskie",
+            "city": "Poznań",
+            "postal_code": "60-200",
+            "street": "Nowa",
+            "number": "13/8"
+          },
+          "home_address": {
+            "voivodeship": "Wielkopolskie",
+            "city": "Poznań",
+            "postal_code": "60-200",
+            "street": "Nowa",
+            "number": "13/8"
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "professor": {
+          "$ref": "#/components/schemas/Professor"
+        },
+        "administration_employee": {
+          "$ref": "#/components/schemas/AdministrationEmployee"
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "email",
+        "password",
+        "professor",
+        "administration_employee"
+      ]
+    },
+    "Professor": {
+      "title": "Professor",
+      "example": {
+        "phone": "123 456 789",
+        "level_of_education": "Szkoła średnia"
+      },
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string"
+        },
+        "level_of_education": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "phone",
+        "level_of_education"
+      ]
+    },
+    "AdministrationEmployee": {
+      "title": "AdministrationEmployee",
+      "example": {
+        "correspondence_address": {
+          "voivodeship": "Wielkopolskie",
+          "city": "Poznań",
+          "postal_code": "60-200",
+          "street": "Nowa",
+          "number": "13/8"
+        },
+        "home_address": {
+          "voivodeship": "Wielkopolskie",
+          "city": "Poznań",
+          "postal_code": "60-200",
+          "street": "Nowa",
+          "number": "13/8"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "correspondence_address": {
+          "$ref": "#/components/schemas/CorrespondenceAddress"
+        },
+        "home_address": {
+          "$ref": "#/components/schemas/HomeAddress"
+        }
+      },
+      "required": [
+        "correspondence_address",
+        "home_address"
+      ]
+    },
+    "CorrespondenceAddress": {
+      "title": "CorrespondenceAddress",
+      "example": {
+        "voivodeship": "Wielkopolskie",
+        "city": "Poznań",
+        "postal_code": "60-200",
+        "street": "Nowa",
+        "number": "13/8"
+      },
+      "type": "object",
+      "properties": {
+        "voivodeship": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "voivodeship",
+        "city",
+        "postal_code",
+        "street",
+        "number"
+      ]
+    },
+    "HomeAddress": {
+      "title": "HomeAddress",
+      "example": {
+        "voivodeship": "Wielkopolskie",
+        "city": "Poznań",
+        "postal_code": "60-200",
+        "street": "Nowa",
+        "number": "13/8"
+      },
+      "type": "object",
+      "properties": {
+        "voivodeship": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "voivodeship",
+        "city",
+        "postal_code",
+        "street",
+        "number"
+      ]
+    }
+  
+}
+  },
+  "tags": [
+    {
+      "name": "User",
+      "description": ""
+    }
+  ]
+}

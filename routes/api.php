@@ -19,6 +19,7 @@ Route::prefix('user')->group(function () {
     Route::get('/{user}', [UserController::class, 'get']);
 
     Route::post('/', [UserController::class, 'store']);
+    Route::patch('/', [UserController::class, 'update']);
 
     Route::delete('/{user}', [UserController::class, 'delete']);
 });

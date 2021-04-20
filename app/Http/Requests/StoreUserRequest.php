@@ -31,7 +31,7 @@ class StoreUserRequest extends FormRequest
     {
         throw new HttpResponseException(
             response()->json(
-                $validator->getMessageBag(), 
+                $validator->getMessageBag(),
                 JsonResponse::HTTP_BAD_REQUEST
             )
         );
@@ -45,7 +45,27 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'email|unique:App\Models\User\User,email',
+            'first_name' => 'required|min:1',
+            'last_name' => 'required|min:1',
+            'email' => 'required|email|unique:App\Models\User\User,email',
+            'password' => 'required|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?& ]{8,255}$/',
+            'password_repeat' => 'required|same:password',
+            'professor' => 'required_without:administration_employee',
+            'professor.phone' => 'unique:App\Models\Professor\Professor,phone|regex:/^([+]){0,1}[\d ]{8,}$/',
+            'professor.level_of_education' => 'min:3',
+            'administration_employee' => 'required_without:professor',
+            'administration_employee.correspondence_address' => 'array',
+            'administration_employee.correspondence_address.voivodeship' => 'min:3',
+            'administration_employee.correspondence_address.city' => 'min:3',
+            'administration_employee.correspondence_address.postal_code' => 'regex:/^\d{2}-\d{3}$/',
+            'administration_employee.correspondence_address.street' => 'min:3',
+            'administration_employee.correspondence_address.number' => 'min:1',
+            'administration_employee.home_address' => 'array',
+            'administration_employee.home_address.voivodeship' => 'min:3',
+            'administration_employee.home_address.city' => 'min:3',
+            'administration_employee.home_address.postal_code' => 'regex:/^\d{2}-\d{3}$/',
+            'administration_employee.home_address.street' => 'min:3',
+            'administration_employee.home_address.number' => 'min:1',
         ];
     }
 }
