@@ -23,12 +23,14 @@ class UserController extends Controller
     {
         Log::info("Pobranie wszystkich użytkowników");
 
+        $users = User::all()->load(['professor', 'administrationEmployee']);
         return response()->json(
-            UserResource::collection(User::all())
+            UserResource::collection($users)
         );
     }
 
     /**
+     * @param User $user
      * @return JsonResponse
      */
     public function get(User $user)
@@ -41,6 +43,7 @@ class UserController extends Controller
     }
 
     /**
+     * @param StoreUserRequest $request
      * @return JsonResponse
      */
     public function store(StoreUserRequest $request)
@@ -139,6 +142,7 @@ class UserController extends Controller
         }
 
         $user = DB::transaction(function () use ($request) {
+//            $user = User::query()->where('id', '=', $request->get('id'))->first();
             $user = User::find($request->get('id'));
 
             $user->first_name = $request->get('first_name');

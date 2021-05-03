@@ -31,7 +31,7 @@ class StoreUserRequest extends FormRequest
     {
         throw new HttpResponseException(
             response()->json(
-                $validator->getMessageBag(),
+                $validator->errors()->all(),
                 JsonResponse::HTTP_BAD_REQUEST
             )
         );

@@ -14,11 +14,11 @@ trait AdministrationEmployeeRelations
     {
         return $this->belongsTo(User::class);
     }
-    
+
     /**
      * @return BelongsTo
      */
-    public function correspondenceAddress(): BelongsTo 
+    public function correspondenceAddress(): BelongsTo
     {
         return $this->belongsTo(Address::class, 'correspondence_address_id');
     }
@@ -26,9 +26,9 @@ trait AdministrationEmployeeRelations
     /**
      * @return BelongsTo
      */
-    public function homeAddress(): BelongsTo 
+    public function homeAddress(): BelongsTo
     {
-        return $this->belongsTo(Address::class, 'home_address_id');
+        return $this->belongsTo(Address::class);
     }
 
 }
