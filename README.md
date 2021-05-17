@@ -5,7 +5,8 @@ Jest to API, napisane w laravelu, zawierające operacje CRUD na kontach użytkow
 
 Fundamentem bazy danych jest to, że są dwa rodzaje użytkowników: wykładowca i pracownik administracyjny. Użytkownik może być jednocześnie wykładowcą i pracownikiem administracyjnym, dlatego baza danych zawiera tabele łączące. Użytkownik, oprócz danych własnych, ma również różne typy danych w zależności od tego jakiego typu jest użytkownikiem.<br>
 API ma również implementację validacji, która np. nie pozwala dodać użytkownika, który ma taki sam numer telefonu czy mail, jak inny użytkownik w bazie danych. Validacja obsługuje również wyrażenia reguarne, które nie pozwalają dodać hasła NIE zawierającego przynajmniej jednej dużej litery, jednej małej listery, jednej cyfry i jednego znaku specjalnego oraz maila niezgodnego z wzorcem.<br>
-Każda akcja CRUD jest rejestrowana w pliku laravel.log, a akcja update ma dodatkowo zaimplementowaną funkcjonalność, dzięki której w pliku logu wskazywane są pola, które zostały zmienione.
+Każda akcja CRUD jest rejestrowana w pliku laravel.log, a akcja update ma dodatkowo zaimplementowaną funkcjonalność, dzięki której w pliku logu wskazywane są pola, które zostały zmienione.<br> 
+Zaimplementowałem również endpoint logowania przy użyciu własnego systemu tokenów, które podczas weryfikacji w trakcie logowania, podlegają potrójnej walidacji. System nie przepuszcza tokenów, które zostały w jakikolwiek sposób zmodyfikowane oraz sprawdza czy przeglądarka jest taka sama jak ta, która została użyta podczas logowania. Takie systemy bezpieczeństwa wzmacniają poziom bezpieczeństwa na wypadek gdyby ktoś ukradł token.
 
 <h4>Instalacja projektu</h4>
 Po pobraniu projektu należy w katalogu laravela wpisać w terminalu komendę:
