@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string $email
  * @property string $password
  */
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use HasFactory,
         Notifiable,
@@ -41,4 +41,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
 }

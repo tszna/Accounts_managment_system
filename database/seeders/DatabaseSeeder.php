@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()
+            ->create([
+                'email' => 'admin@gmail.com',
+            ]);
+
+        User::factory()
             ->count(10)
             ->create();
 

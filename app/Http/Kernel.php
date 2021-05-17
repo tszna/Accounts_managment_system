@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\BrowserCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -43,6 +44,11 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'token' => [
+            \App\Http\Middleware\Token::class,
+            \App\Http\Middleware\TokenBrowserCheck::class,
+        ],
     ];
 
     /**
@@ -62,5 +68,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+//        'token' => \App\Http\Middleware\Token::class,
+//        'browsercheck' => BrowserCheck::class,
     ];
 }

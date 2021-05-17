@@ -20,6 +20,7 @@ trait AdministrationEmployeeRelations
      */
     public function correspondenceAddress(): BelongsTo
     {
+        
         return $this->belongsTo(Address::class, 'correspondence_address_id');
     }
 

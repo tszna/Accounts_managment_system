@@ -21,6 +21,7 @@ trait UserRelations
      */
     public function administrationEmployee(): HasOne
     {
+
         return $this->hasOne(AdministrationEmployee::class);
     }
 }

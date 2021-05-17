@@ -24,6 +24,7 @@ class UserController extends Controller
         Log::info("Pobranie wszystkich użytkowników");
 
         $users = User::all()->load(['professor', 'administrationEmployee']);
+
         return response()->json(
             UserResource::collection($users)
         );
@@ -142,7 +143,6 @@ class UserController extends Controller
         }
 
         $user = DB::transaction(function () use ($request) {
-//            $user = User::query()->where('id', '=', $request->get('id'))->first();
             $user = User::find($request->get('id'));
 
             $user->first_name = $request->get('first_name');

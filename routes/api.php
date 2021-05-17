@@ -14,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('user')->group(function () {
-    Route::get('/', [UserController::class, 'getAll']);
-    Route::get('/{user}', [UserController::class, 'get']);
+Route::prefix('user')
+    ->middleware(['api'])//, 'auth:api', 'browsercheck'])
+    ->group(function () {
+        Route::get('/', [UserController::class, 'getAll']);
+        Route::get('/{user}', [UserController::class, 'get']);
 
-    Route::post('/', [UserController::class, 'store']);
-    Route::patch('/', [UserController::class, 'update']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::patch('/', [UserController::class, 'update']);
 
-    Route::delete('/{user}', [UserController::class, 'delete']);
-});
+        Route::delete('/{user}', [UserController::class, 'delete']);
+    });
+
+include 'Auth/auth.php';
