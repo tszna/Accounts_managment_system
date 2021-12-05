@@ -11,12 +11,8 @@ Zaimplementowałem również endpoint logowania przy użyciu własnego systemu t
 <h4>Instalacja projektu</h4>
 Po pobraniu projektu należy w katalogu laravela wpisać w terminalu komendę:
 <pre><code>composer install</code></pre>
-następnie:
-<pre><code>cp .env.example .env</code></pre>
-Teraz należy zmienić w pliku .env dane dostepu do bazy danych, później np. w programie xampp uruchomić obsługę MySQL i dodać użytkownika w panelu zarządzania SQL.
-W kolejnym kroku można wpisać w terminalu komendę:
-<pre><code>php artisan migrate:fresh --seed</code></pre>
-jeśli chcemy zapełnić bazę danych przypadkowymi danymi.
+Następnie w bazie mysql utworzyć bazę danych o nazwie: shop, i użytkownika z uprawnieniami do tej bazy danych o loginie: shop i haśle: shop.
+W kolejnym kroku należy zaimportować do stworzonej bazy danych plik sql, który znajduje się w głównym katalogu aplikacji.
 A na koniec, aby uruchomić server, należy wpisać:
 <pre><code>php artisan serve</code></pre>
 Dla akcji create, została zbudowana dokumentacja w ramach swagger ui, można ją znaleźć pod adresem:
@@ -24,3 +20,9 @@ Dla akcji create, została zbudowana dokumentacja w ramach swagger ui, można j�
 a prezentuje się w ten sposób:<br> 
 <p></p>
 <img src="https://i.imgur.com/cokTzI9.png" alt="swagger">
+
+<h4>Uruchomienia projektu poprzez docker</h4>
+Po pobraniu projektu należy skopiować zawartość katalogu Docker i wkleić do głównego katalogu aplikacji, w taki sposób aby nadpisać istniejące pliki. Następnie należy uruchomić terminal w głównym katalogu aplikacji i wpisać komendę:
+<pre><code>docker-compose up</code></pre>
+W kolejnym kroku należy uruchmić phpmyadmin i zaimportować do istniejącej bazy danych plik sql, który znajduje się w głównym katalogu aplikacji.
+Kontener phpmyadmin nasłuchuje domyślnie na porcie 8080, a php na porcie 80. Domyślne porty można zmienić w pliku docker-compose.yml

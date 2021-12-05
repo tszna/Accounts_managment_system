@@ -1,0 +1,53 @@
+services:
+  app-nginx:
+    image: nginx:alpine
+    container_name: app-nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./:/var/www/html
+    networks:
+      - app-network
+
+  app-php:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    container_name: app-php
+    volumes:
+      - ./:/var/www/html/
+    networks:
+      - app-network
+
+  app-mysql:
+    image: mysql:8.0.26
+    container_name: app-mysql
+    environment:
+      MYSQL_DATABASE: shop
+      MYSQL_USER: shop
+      MYSQL_PASSWORD: shop
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  app-phpmyadmin:
+    image: phpmyadmin
+    container_name: app-phpmyadmin
+    environment:
+      PMA_HOST: app-mysql
+      PMA_USER: root
+      PMA_PASSWORD: ""
+    ports:
+      - 8080:80
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: "bridge"
